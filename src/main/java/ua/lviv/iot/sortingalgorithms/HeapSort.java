@@ -4,18 +4,20 @@ import ua.lviv.iot.model.Ship;
 import ua.lviv.iot.utilities.ShipNumberOfPassengersComparator;
 
 public class HeapSort {
-	public static int exchanges = 0;
-	public static int compares = 0;
+	private static int exchanges = 0;
+	private static int compares = 0;
 
-	public static void sortByNumberOfPassengersDescending(Ship[] ships) {
-		int length = ships.length;
+	public static Ship[] sortByNumberOfPassengersDescending(Ship[] ships) {
+		Ship[] copiedArrayOfShips = ships.clone();
+		int length = copiedArrayOfShips.length;
 		for (int position = length / 2; position >= 1; position--) {
-			sink(ships, position, length);
+			sink(copiedArrayOfShips, position, length);
 		}
 		while (length > 1) {
-			swap(ships, 1, length--);
-			sink(ships, 1, length);
+			swap(copiedArrayOfShips, 1, length--);
+			sink(copiedArrayOfShips, 1, length);
 		}
+		return copiedArrayOfShips;
 	}
 
 	private static void sink(Ship[] ships, int position, int length) {
@@ -56,10 +58,5 @@ public class HeapSort {
 
 	public static int getExchanges() {
 		return exchanges;
-	}
-
-	public static void resetTestData() {
-		compares = 0;
-		exchanges = 0;
 	}
 }

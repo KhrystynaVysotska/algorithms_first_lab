@@ -7,15 +7,17 @@ public class InsertionSort {
 	private static int exchanges = 0;
 	private static int compares = 0;
 
-	public static void sortByTonnageAccending(Ship[] ships) {
-		int length = ships.length;
+	public static Ship[] sortByTonnageAccending(Ship[] ships) {
+		Ship[] copiedArrayOfShips = ships.clone();
+		int length = copiedArrayOfShips.length;
 		for (int i = 0; i < length; i++) {
 			for (int j = i; j > 0; j--) {
-				if (less(ships[j], ships[j - 1])) {
-					swap(ships, j, j - 1);
+				if (less(copiedArrayOfShips[j], copiedArrayOfShips[j - 1])) {
+					swap(copiedArrayOfShips, j, j - 1);
 				}
 			}
 		}
+		return copiedArrayOfShips;
 	}
 
 	private static boolean less(Ship firstShip, Ship secondShip) {
@@ -41,10 +43,5 @@ public class InsertionSort {
 
 	public static int getExchanges() {
 		return exchanges;
-	}
-
-	public static void resetTestData() {
-		compares = 0;
-		exchanges = 0;
 	}
 }

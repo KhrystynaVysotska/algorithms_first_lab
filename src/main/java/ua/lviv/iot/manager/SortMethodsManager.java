@@ -23,20 +23,17 @@ public class SortMethodsManager {
 		Ship[] shipStore = new Ship[ships.size()];
 		shipStore = ships.toArray(shipStore);
 
-		InsertionSort.resetTestData();
 		long startOfInsertionSort = System.currentTimeMillis();
-		InsertionSort.sortByTonnageAccending(shipStore);
+		Ship[] dataSortedWithInserionSort = InsertionSort.sortByTonnageAccending(shipStore);
 		long endOfInsertionSort = System.currentTimeMillis();
-		printAlgorithmData(shipStore, "Insertion Sort", endOfInsertionSort - startOfInsertionSort,
+		printAlgorithmData(dataSortedWithInserionSort, "Insertion Sort", endOfInsertionSort - startOfInsertionSort,
 				InsertionSort.getExchanges(), InsertionSort.getCompares());
 
-		HeapSort.resetTestData();
 		long startOfHeapSort = System.currentTimeMillis();
-		HeapSort.sortByNumberOfPassengersDescending(shipStore);
+		Ship[] dataSortedWithHeapSort = HeapSort.sortByNumberOfPassengersDescending(shipStore);
 		long endOfHeapSort = System.currentTimeMillis();
-		printAlgorithmData(shipStore, "HeapSort", endOfHeapSort - startOfHeapSort, HeapSort.getExchanges(),
+		printAlgorithmData(dataSortedWithHeapSort, "HeapSort", endOfHeapSort - startOfHeapSort, HeapSort.getExchanges(),
 				HeapSort.getCompares());
-
 	}
 
 	protected static void printAlgorithmData(Ship[] shipStore, String nameOfAlgorithm, long timeInMillis,
